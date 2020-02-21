@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button id="liuxing">流行歌曲</button>
+	<button id="jingdian">经典歌曲</button>
+	<button id="yaogun">摇滚歌曲</button>
+	<div id="container"></div>
+	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+	<script type="text/javascript">
+		var musicType;
+		document.getElementById("liuxing").onclick = function(){
+				$.ajax({
+					"url" : "/AjaxJquery/music_list",
+					"type" : "get",
+					"data" : {"musicType":"liuxing"},
+					"dataType" : "json",
+					"success" : function(json){
+						$("#container>h1").remove();
+						for(i=0;i<json.length;i++){
+							$("#container").append("<h1>" + json[i].name +"</h1>");
+						}
+					}
+				})
+		}
+		document.getElementById("jingdian").onclick = function(){
+				$.ajax({
+					"url" : "/AjaxJquery/music_list",
+					"type" : "get",
+					"data" : {"musicType":"jingdian"},
+					"dataType" : "json",
+					"success" : function(json){
+						$("#container>h1").remove();
+						for(i=0;i<json.length;i++){
+							$("#container").append("<h1>" + json[i].name +"</h1>");
+						}
+					}
+				})
+		}
+		document.getElementById("yaogun").onclick = function(){
+				$.ajax({
+					"url" : "/AjaxJquery/music_list",
+					"type" : "get",
+					"data" : {"musicType" : "yaogun"},
+					"dataType" : "json",
+					"success" : function(json){
+						$("#container>h1").remove();
+						for(i=0;i<json.length;i++){
+							$("#container").append("<h1>" + json[i].name +"</h1>");
+						}
+					}
+				})
+		}
+		
+			/* $.ajax({
+				"url" : "/AjaxJquery/music_list",
+				"type" : "get",
+				"data" : musicType,
+				"dataType" : "json",
+				"success" : function(json){
+					for(i=0;i<json.length;i++){
+						$("container").append("<h1>" + json[i].name +"</h1>");
+					}
+				}
+			}) */
+		
+	</script>
+</body>
+</html>
